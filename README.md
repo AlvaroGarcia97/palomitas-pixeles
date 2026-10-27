@@ -1,26 +1,26 @@
 # Palomitas & Pixeles
 
-Aplicación web (Laravel) para gestionar un **club de cine**: busca películas, guárdalas
-en tu lista de pendientes, puntúalas cuando las veas y deja que la **ruleta** decida qué
-toca esta noche. Incluye un mini-juego de adivinar películas por su carátula.
+Aplicacin web (Laravel) para gestionar un **club de cine**: busca pelculas, gurdalas
+en tu lista de pendientes, puntalas cuando las veas y deja que la **ruleta** decida qu
+toca esta noche. Incluye un mini-juego de adivinar pelculas por su cartula.
 
-Es un proyecto de aprendizaje: autenticación propia, consumo de una API externa (TMDB),
-base de datos relacional y lógica de juego con estado en sesión.
+Es un proyecto de aprendizaje: autenticacin propia, consumo de una API externa (TMDB),
+base de datos relacional y lgica de juego con estado en sesin.
 
 ## Funcionalidades
 
-- **Cuentas de usuario**: registro, login y logout (contraseñas cifradas con bcrypt).
-- **Buscador de películas**: consulta TMDB y muestra carátula, año y nota.
-- **Mi club**: guarda películas como *Quiero ver* o *Vista*, con **nota (1–5)** y **reseña**.
-- **Ruleta**: elige al azar una película pendiente con una pequeña animación.
-- **Juego "¿Qué película es?"**: 10 rondas de adivinar el título a partir de la carátula, con puntuación guardada.
-- **Resumen (dashboard)**: totales del club, nota media, estadísticas del juego y actividad reciente.
+- **Cuentas de usuario**: registro, login y logout (contraseas cifradas con bcrypt).
+- **Buscador de pelculas**: consulta TMDB y muestra cartula, ao y nota.
+- **Mi club**: guarda pelculas como *Quiero ver* o *Vista*, con **nota (15)** y **resea**.
+- **Ruleta**: elige al azar una pelcula pendiente con una pequea animacin.
+- **Juego "Qu pelcula es?"**: 10 rondas de adivinar el ttulo a partir de la cartula, con puntuacin guardada.
+- **Resumen (dashboard)**: totales del club, nota media, estadsticas del juego y actividad reciente.
 
-## Tecnologías
+## Tecnologas
 
 - PHP 8.3 + **Laravel 13**
 - **SQLite** (base de datos por defecto)
-- Tailwind CSS (vía CDN)
+- Tailwind CSS (va CDN)
 - **TMDB API** (The Movie Database)
 
 ## Requisitos
@@ -29,7 +29,7 @@ base de datos relacional y lógica de juego con estado en sesión.
 - Composer 2
 - Una **API key gratuita** de TMDB
 
-## Instalación paso a paso (local)
+## Instalacin paso a paso (local)
 
 Sigue estos pasos para que funcione correctamente en tu equipo:
 
@@ -46,7 +46,7 @@ composer install
 # En Linux/Mac: cp .env.example .env
 cp .env.example .env
 
-# 4. Generar la clave de la aplicación
+# 4. Generar la clave de la aplicacin
 php artisan key:generate
 
 # 5. Crear la base de datos SQLite (si no existe)
@@ -61,19 +61,19 @@ php artisan migrate
 php artisan serve
 ```
 
-La app quedará en `http://127.0.0.1:8000`.
+La app quedar en `http://127.0.0.1:8000`.
 
 ## Configurar TMDB
 
 1. Crea una cuenta en [themoviedb.org](https://www.themoviedb.org).
-2. En **Ajustes → API**, solicita una clave de desarrollador y copia la **API Key (v3 auth)**.
-3. Añádela a tu `.env`:
+2. En **Ajustes  API**, solicita una clave de desarrollador y copia la **API Key (v3 auth)**.
+3. Adela a tu `.env`:
 
 ```env
 TMDB_API_KEY=tu_api_key
 ```
 
-4. Limpia la caché de configuración si la app ya estaba arrancada:
+4. Limpia la cach de configuracin si la app ya estaba arrancada:
 
 ```bash
 php artisan config:clear
@@ -83,15 +83,15 @@ php artisan config:clear
 
 1. `php artisan serve` y abre `http://127.0.0.1:8000`.
 2. **Crea una cuenta** o entra con la tuya.
-3. **Busca** una película y pulsa *Añadir a mi club*.
-4. En **Mi club**, abre la ficha para marcarla como *Vista*, ponerle nota y reseña.
-5. Prueba la **Ruleta** con tus pendientes y el **Juego** para adivinar carátulas.
-6. El **Resumen** reúne tus estadísticas.
+3. **Busca** una pelcula y pulsa *Aadir a mi club*.
+4. En **Mi club**, abre la ficha para marcarla como *Vista*, ponerle nota y resea.
+5. Prueba la **Ruleta** con tus pendientes y el **Juego** para adivinar cartulas.
+6. El **Resumen** rene tus estadsticas.
 
-## Solución de problemas
+## Solucin de problemas
 
-- **No aparecen películas al buscar**: comprueba que `TMDB_API_KEY` esté bien en `.env` y que hayas hecho `php artisan config:clear`.
-- **Errores de migración**: asegúrate de haber creado `database/database.sqlite` antes de `php artisan migrate`.
+- **No aparecen pelculas al buscar**: comprueba que `TMDB_API_KEY` est bien en `.env` y que hayas hecho `php artisan config:clear`.
+- **Errores de migracin**: asegrate de haber creado `database/database.sqlite` antes de `php artisan migrate`.
 - **Errores 500 tras clonar**: ejecuta `php artisan key:generate` (falta `APP_KEY`).
 
 ## Estructura y decisiones
@@ -99,11 +99,11 @@ php artisan config:clear
 - `app/Services/TmdbService.php`: centraliza las llamadas a TMDB.
 - Auth manual con sesiones de Laravel.
 - `library_items` guarda un snapshot de los datos de TMDB.
-- En el juego, la respuesta correcta vive solo en la sesión del servidor.
+- En el juego, la respuesta correcta vive solo en la sesin del servidor.
 
 ## Roadmap
 
-- [ ] Tests automáticos con `Http::fake()`.
-- [ ] Filtrar el buscador por género y año.
-- [ ] Despliegue en producción.
+- [ ] Tests automticos con `Http::fake()`.
+- [ ] Filtrar el buscador por gnero y ao.
+- [ ] Despliegue en produccin.
 - [ ] Front-end en **Angular** consumiendo una API JSON propia.
