@@ -128,10 +128,10 @@ class GameController extends Controller
         for ($attempt = 0; $attempt < 5; $attempt++) {
             $movies = $this->tmdb->popularMovies(random_int(1, 20));
 
-            // Solo las que tienen carátula y título.
+            // Solo las que tienen carátula, fotograma y título.
             $movies = array_values(array_filter(
                 $movies,
-                fn ($m) => ! empty($m['poster_path']) && ! empty($m['title']),
+                fn ($m) => ! empty($m['poster_path']) && ! empty($m['backdrop_path']) && ! empty($m['title']),
             ));
 
             // Quitamos duplicados por id.
@@ -144,7 +144,8 @@ class GameController extends Controller
                 $options = array_map(fn ($m) => [
                     'id'           => $m['id'],
                     'title'        => $m['title'],
-                    'poster_path'  => $m['poster_path'],
+                    'poster_path'   => $m['poster_path'],
+                    'backdrop_path' => $m['backdrop_path'],
                     'release_date' => $m['release_date'] ?? '',
                 ], array_slice($movies, 0, 4));
 
